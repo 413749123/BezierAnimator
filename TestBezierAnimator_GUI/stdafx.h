@@ -17,5 +17,17 @@
 #include <memory.h>
 #include <tchar.h>
 
+// TODO: 添加要在此处预编译的标头
+#include <iostream>
+#include <string>
+#include <algorithm>
+#include <stack>
+#include <queue>
+#include <memory>
+#include <Windows.h>
+#include <assert.h>
+#include <cmath>
+#include <thread>
+#include <functional>
 
 // 在此处引用程序需要的其他标头

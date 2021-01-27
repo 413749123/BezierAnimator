@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestBezierAnimator_GUI", "TestBezierAnimator_GUI\TestBezierAnimator_GUI.vcxproj", "{6E7CAD5D-A01F-4BF2-8AFF-1E193E6131FD}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestBezierAnimator_CMD", "TestBezierAnimator_CMD\TestBezierAnimator_CMD.vcxproj", "{CBA7FBD3-718D-4B45-B5DD-A363756B98F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{6E7CAD5D-A01F-4BF2-8AFF-1E193E6131FD}.Release|x64.Build.0 = Release|x64
 		{6E7CAD5D-A01F-4BF2-8AFF-1E193E6131FD}.Release|x86.ActiveCfg = Release|Win32
 		{6E7CAD5D-A01F-4BF2-8AFF-1E193E6131FD}.Release|x86.Build.0 = Release|Win32
+		{CBA7FBD3-718D-4B45-B5DD-A363756B98F8}.Debug|x64.ActiveCfg = Debug|x64
+		{CBA7FBD3-718D-4B45-B5DD-A363756B98F8}.Debug|x64.Build.0 = Debug|x64
+		{CBA7FBD3-718D-4B45-B5DD-A363756B98F8}.Debug|x86.ActiveCfg = Debug|Win32
+		{CBA7FBD3-718D-4B45-B5DD-A363756B98F8}.Debug|x86.Build.0 = Debug|Win32
+		{CBA7FBD3-718D-4B45-B5DD-A363756B98F8}.Release|x64.ActiveCfg = Release|x64
+		{CBA7FBD3-718D-4B45-B5DD-A363756B98F8}.Release|x64.Build.0 = Release|x64
+		{CBA7FBD3-718D-4B45-B5DD-A363756B98F8}.Release|x86.ActiveCfg = Release|Win32
+		{CBA7FBD3-718D-4B45-B5DD-A363756B98F8}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

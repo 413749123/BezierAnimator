@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include "TestBezierAnimator_GUI.h"
+#include "animator.h"
 
 #define MAX_LOADSTRING 100
 
@@ -10,6 +11,12 @@
 HINSTANCE hInst;                                // 当前实例
 WCHAR szTitle[MAX_LOADSTRING];                  // 标题栏文本
 WCHAR szWindowClass[MAX_LOADSTRING];            // 主窗口类名
+HWND hWnd;
+
+std::unique_ptr<Animator> animator;
+const int fps = 70;
+bool running = true;
+bool forward = true;
 
 // 此代码模块中包含的函数的前向声明:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
@@ -97,18 +104,48 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 将实例句柄存储在全局变量中
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+   hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
+      400, 0, 400, 200, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
       return FALSE;
    }
 
-   ShowWindow(hWnd, nCmdShow);
+   //ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
+   
+   animator = std::make_unique<Animator>(0, 1200, 1,
+                                         [&](int v)
+                                         {
+                                           ::SetWindowPos(hWnd, HWND_TOPMOST, 100 + v, 200, 400, 200, SWP_SHOWWINDOW);
+                                         }
+   , EasingCurve::Type::InOutBezier);
+
+   ::SetTimer(hWnd, 1001, 1000 / fps, nullptr);
+
    return TRUE;
+}
+
+void OnTimer()
+{
+  //static int count = 1;
+  //::SetWindowPos(hWnd, HWND_TOPMOST, ++count, 0, 400, 200, 0);
+  //return;
+  static time_t last_time = time(nullptr);
+  if (running == false) {
+    if ((time(nullptr) - last_time) > 3) {
+    running = true;
+    forward = !forward;
+    }
+  } else {
+    if (animator) {
+      bool finish = animator->Step(1.0 / fps, forward);
+      running = !finish;
+    }
+    last_time = time(nullptr);
+  }
 }
 
 //
@@ -153,6 +190,9 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
+    case WM_TIMER:
+      OnTimer();
+      break;
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
